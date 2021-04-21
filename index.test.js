@@ -1,4 +1,4 @@
-const utils = require('./index')
+const utils = require('./index');
 
 describe('[Exercise 1] trimProperties', () => {
   test('[1] returns an object with the properties trimmed', () => {
@@ -155,8 +155,29 @@ describe('[Exercise 6] Car', () => {
 });
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
-  test.todo('[19] resolves true if passed an even number');
-  test.todo('[20] resolves false if passed an odd number');
-  test.todo('[21] rejects an error with the message "number must be a number" if passed a non-number type');
-  test.todo('[22] rejects an error with the message "number must be a number" if passed NaN');
+  test('[19] resolves true if passed an even number', async () => {
+    const evenNumber = 4;
+    const result = await utils.isEvenNumberAsync(evenNumber);
+    expect(result).toBe(true);
+  });
+  test('[20] resolves false if passed an odd number', async () => {
+    const oddNumber = 5;
+    const result = await utils.isEvenNumberAsync(oddNumber);
+    expect(result).toBe(false);
+  });
+  test('[21] rejects an error with the message "number must be a number" if passed a non-number type', () => {
+    const string = "5";
+    utils.isEvenNumberAsync(string)
+      .then()
+      .catch(err => {
+        expect(err).toBe("number must be a number");
+      });
+  });
+  test('[22] rejects an error with the message "number must be a number" if passed NaN', () => {
+    utils.isEvenNumberAsync(NaN)
+      .then()
+      .catch(err => {
+        expect(err).toBe("number must be a number");
+      });
+  });
 });

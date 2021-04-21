@@ -186,7 +186,15 @@ class Car {
  * })
  */
 function isEvenNumberAsync(number) {
-  // ✨ implement
+  if (!number || typeof number !== "number") {
+    return Promise.reject('number must be a number');
+  } else {
+    if (number % 2 === 0) {
+      return Promise.resolve(true);
+    } else {
+      return Promise.resolve(false);
+    }
+  }
 }
 
 module.exports = {
@@ -197,4 +205,4 @@ module.exports = {
   Counter,
   Seasons,
   Car,
-}
+};
