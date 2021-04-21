@@ -130,8 +130,15 @@ describe('[Exercise 6] Car', () => {
   beforeEach(() => {
     focus = new utils.Car('focus', 20, 30); // each test must start with a fresh car
   });
-  test.todo('[15] driving the car returns the updated odometer');
-  test.todo('[16] driving the car uses gas');
+  test('[15] driving the car returns the updated odometer', () => {
+    focus.drive(10);
+    expect(focus.odometer).toBe(10);
+  });
+  test('[16] driving the car uses gas', () => {
+    focus.drive(30);
+    const gasLeft = 19; //30 miles at 30 mpg uses 1 gallon. Tank holds 20;
+    expect(focus.fuel).toBe(gasLeft);
+  });
   test.todo('[17] refueling allows to keep driving');
   test.todo('[18] adding fuel to a full tank has no effect');
 });
