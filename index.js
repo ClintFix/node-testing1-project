@@ -139,10 +139,10 @@ class Car {
   drive(distance) {
     let fuelUsed = distance / this.mpg;
     if (this.fuel - fuelUsed <= 0){
-      fuelUsed = fuelUsed - (this.fuel - fuelUsed); 
+      fuelUsed = fuelUsed + (this.fuel - fuelUsed); 
     }
     this.fuel -= fuelUsed;
-    this.odometer += fuelUsed * this.mpg;
+    this.odometer += Math.round(fuelUsed * this.mpg);
     return this.odometer;
   }
 
@@ -158,7 +158,11 @@ class Car {
    * focus.refuel(99) // returns 600 (tank only holds 20)
    */
   refuel(gallons) {
-    // ✨ implement
+    if (gallons >= this.tank) {
+      this.fuel = this.tank;
+    } else {
+      this.fuel = gallons;
+    }
   }
 }
 

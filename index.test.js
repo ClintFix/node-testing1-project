@@ -139,8 +139,19 @@ describe('[Exercise 6] Car', () => {
     const gasLeft = 19; //30 miles at 30 mpg uses 1 gallon. Tank holds 20;
     expect(focus.fuel).toBe(gasLeft);
   });
-  test.todo('[17] refueling allows to keep driving');
-  test.todo('[18] adding fuel to a full tank has no effect');
+  test('[17] refueling allows to keep driving', () => {
+    focus.drive(610); //run out of gas
+    expect(focus.odometer).toBe(600); //600 max miles on tank
+    focus.drive(1);
+    expect(focus.odometer).toBe(600);
+    focus.refuel(100); //fills tank
+    focus.drive(610); //full tank only goes 600 miles.
+    expect(focus.odometer).toBe(1200);
+  });
+  test('[18] adding fuel to a full tank has no effect', () => {
+    focus.refuel(200);
+    expect(focus.fuel).toBe(20); //20 is tank size;
+  });
 });
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
